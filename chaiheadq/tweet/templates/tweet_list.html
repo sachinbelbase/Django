@@ -9,7 +9,11 @@ Tweet Page
 
 <a class="btn btn-solid mb-5 theme-primary" href="{% url 'tweet_create' %}">Create a New Tweet</a>
 
-<div class="container row gap-3">
+{% if query %}
+<p class="text-muted">Results for "<strong>{{ query }}</strong>"</p>
+{% endif %}
+
+<div class="container row gap-7">
 
      {% for tweet in tweets %}
 
@@ -24,7 +28,8 @@ Tweet Page
                {% endif %}
           </div>
      </section>
-
+     {% empty %}
+     <p>No tweets found.</p>
      {% endfor %}
 
 </div>

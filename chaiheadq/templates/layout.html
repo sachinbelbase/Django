@@ -48,9 +48,8 @@
             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
           </li>
         </ul>
-        <form class="hstack gap-2" role="search">
-          <input class="form-control" type="search" placeholder="Search" aria-label="Search"/>
-          </button>
+        <form method="GET" action="{% url 'tweet_list' %}" class="hstack gap-2" role="search">
+          <input id="searchInput" class="form-control" type="search" placeholder="Search" aria-label="Search" name="search" value="{{request.GET.search}}"/>
           <button class="btn-solid theme-success" type="submit">Search</button>
         </form>
 
@@ -76,5 +75,14 @@
 
           {% endblock %}
      </div>
+
+     <script>
+      const input = document.getElementById('searchInput');
+      let timer;
+      input.addEventListener('input', () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => input.form.submit(), 500);
+      });
+    </script>
 </body>
 </html>
