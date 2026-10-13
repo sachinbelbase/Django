@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Tweet Page
+{% endblock %}
+
+{% block content %}
+<h1 class='mt-4 text-center'>Welcome to Code with Sachin Project.</h1>
+
+<h2> 
+     {% if form.instance.pk %}
+     Edit Tweet
+     {% else %}
+     Create Tweet
+     {% endif %}
+
+     <form method="POST" enctype="multipart/form-data" class="form"> 
+          {% csrf_token %}
+          {{form.as_p}}
+          <button class="btn btn-solid theme-warning " type="submit">Submit</button>
+     </form>
+     <a href="{% url 'tweet_list' %}">Back to Tweet List </a>
+</h2>
+
+
+{% endblock %}

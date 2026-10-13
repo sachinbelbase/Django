@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Tweet Page
+{% endblock %}
+
+{% block content %}
+<h1 class='mt-4 text-center'>Welcome to Code with Sachin Project.</h1>
+
+<a class="btn btn-solid mb-5 theme-primary" href="{% url 'tweet_create' %}">Create a New Tweet</a>
+
+<div class="container row gap-3">
+
+     {% for tweet in tweets %}
+
+     <section class="card" style="max-width: 320px">
+          <img src="{{tweet.image.url}}" class="card-img-top" alt="Tweet image">
+          <div class="card-body">
+               <h4 class="card-title">{{tweet.user.username}}</h4>
+               <p class="card-text">{{tweet.text}}</p>
+               {% if tweet.user == user %}
+               <a href="{% url 'tweet_edit' tweet.id %}" class="btn-solid theme-primary">Edit</a>
+               <a href="{% url 'tweet_delete' tweet.id %}" class="btn-solid theme-danger">Delete</a>
+               {% endif %}
+          </div>
+     </section>
+
+     {% endfor %}
+
+</div>
+
+
+{% endblock %}
